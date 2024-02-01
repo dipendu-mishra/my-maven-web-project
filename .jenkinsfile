@@ -1,0 +1,40 @@
+pipeline{
+	agent any
+
+	stages{
+		stage('Checkout code'){
+			checkout scm
+			}
+		}
+	stage('Build'){
+		steps{
+			bat "mvn clean install -Dmaven.test.skip=true"
+		}
+	}
+
+	stage('Archieve Artifact'){
+		steps{
+		archiveArtifacts artifacts:'target/*.war'
+		}
+	}
+
+	stage('Deployment')
+		steps{
+		deploy adapters:[tomcat9(url:'http://65.2.63.191:8080/',
+			credentailsId:'TomcatCreds')],
+			war:'target/*.war',
+			contextPath:'my-web-project'
+		}
+	}
+
+	stage('Notification'){
+		steps{
+		emailext(
+			subject:"Job Completed",
+			body"Jenkins pipeline job for maven build job completed",
+			to:"dipendu.mishra@ltts.com"
+		)
+		}
+	}
+}
+
