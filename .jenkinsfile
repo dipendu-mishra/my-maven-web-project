@@ -3,6 +3,7 @@ pipeline{
 
 	stages{
 		stage('Checkout Code'){
+		 	steps{
 			checkout scm
 			}
 		}
@@ -34,6 +35,8 @@ pipeline{
 			body:"Jenkins pipeline job for maven build job completed",
 			to:"dipendu.mishra@ltts.com"
 		)
+			}
 		}
 	}
+}
 
