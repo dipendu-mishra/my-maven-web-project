@@ -13,16 +13,16 @@ pipeline{
 		}
 	}
 
-	stage('Archieve Artifact'){
+	stage('Archive Artifact'){
 		steps{
 		archiveArtifacts artifacts:'target/*.war'
 		}
 	}
 
-	stage('Deployment')
+	stage('deployment')
 		steps{
 		deploy adapters:[tomcat9(url:'http://65.2.63.191:8080/',
-			credentailsId:'TomcatCreds')],
+			credentialsId:'TomcatCreds')],
 			war:'target/*.war',
 			contextPath:'my-web-project'
 		}
