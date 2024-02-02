@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 
 <html>
-<body bgcolor=cyan>
+<body bgcolor=pink>
 <h1><font color='red'> Welcome to LTTS GLobal Engineering Academy <font></h1>
 
 <a href="https://ltts.com">LTTS</a>
